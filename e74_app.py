@@ -150,6 +150,7 @@ def save_user_db(db):
     """Gist에 사용자 DB 저장"""
     token = get_github_token()
     if not token:
+        st.error("❌ GITHUB_TOKEN이 Streamlit Secrets에 없습니다.")
         return False
     try:
         r = requests.patch(
@@ -159,9 +160,12 @@ def save_user_db(db):
             timeout=10,
         )
         st.cache_data.clear()
-        return r.status_code == 200
+        if r.status_code != 200:
+            st.error(f"❌ Gist 저장 실패 (HTTP {r.status_code}): {r.text[:300]}")
+            return False
+        return True
     except Exception as e:
-        st.error(f"DB 저장 실패: {e}")
+        st.error(f"❌ DB 저장 예외: {type(e).__name__}: {e}")
         return False
 
 def add_usage_log(db, email, model, input_tokens, output_tokens):
