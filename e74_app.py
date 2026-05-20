@@ -44,13 +44,65 @@ section[data-testid="stSidebar"] {{
     background: {RSV_NAVY};
     border-right: 1px solid {RSV_GOLD}33;
 }}
+section[data-testid="stSidebar"] * {{
+    color: {RSV_TEXT} !important;
+}}
+section[data-testid="stSidebar"] h1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {{
+    color: {RSV_GOLD} !important;
+}}
 h1, h2, h3, h4 {{
     color: {RSV_GOLD} !important;
     font-weight: 700;
 }}
+/* 모든 일반 텍스트 - 밝은 색으로 */
+.stApp p, .stApp span, .stApp div, .stApp li {{
+    color: {RSV_TEXT};
+}}
+.stApp strong, .stApp b {{
+    color: {RSV_GOLD_LIGHT};
+}}
+/* 위젯 라벨 (가장 중요 - 이게 안보였던 문제) */
+label, .stTextInput label, .stNumberInput label, .stSelectbox label,
+.stTextArea label, .stCheckbox label, .stRadio label, .stDateInput label,
+[data-testid="stWidgetLabel"], [data-testid="stWidgetLabel"] * {{
+    color: {RSV_GOLD_LIGHT} !important;
+    font-weight: 600 !important;
+}}
+/* 캡션·헬프 텍스트 */
+.stCaption, [data-testid="stCaptionContainer"] {{
+    color: {RSV_MUTED} !important;
+}}
+/* 입력 필드: 밝은 배경 + 검은 글씨 (시인성 우선) */
+.stTextInput input, .stNumberInput input, .stTextArea textarea,
+.stDateInput input {{
+    background: #FFFFFF !important;
+    color: #1a1a1a !important;
+    border: 1px solid {RSV_GOLD}66 !important;
+}}
+/* Selectbox */
+.stSelectbox [data-baseweb="select"] {{
+    background: #FFFFFF !important;
+}}
+.stSelectbox [data-baseweb="select"] * {{
+    color: #1a1a1a !important;
+}}
+/* 라디오 / 체크박스 옵션 텍스트 */
+.stRadio label p, .stCheckbox label p {{
+    color: {RSV_TEXT} !important;
+}}
+/* 탭 */
+.stTabs [data-baseweb="tab-list"] button {{
+    color: {RSV_TEXT} !important;
+}}
+.stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {{
+    color: {RSV_GOLD} !important;
+}}
+/* 버튼 */
 .stButton button {{
     background: linear-gradient(135deg, {RSV_GOLD} 0%, {RSV_GOLD_LIGHT} 100%);
-    color: {RSV_NAVY};
+    color: {RSV_NAVY} !important;
     border: none;
     font-weight: 700;
     padding: 0.5rem 1.5rem;
@@ -58,18 +110,66 @@ h1, h2, h3, h4 {{
 }}
 .stButton button:hover {{
     background: {RSV_GOLD_LIGHT};
-    color: {RSV_NAVY};
+    color: {RSV_NAVY} !important;
 }}
+.stButton button * {{
+    color: {RSV_NAVY} !important;
+}}
+/* 다운로드 버튼 */
+.stDownloadButton button {{
+    background: {RSV_NAVY_LIGHT} !important;
+    color: {RSV_GOLD} !important;
+    border: 1px solid {RSV_GOLD} !important;
+}}
+/* Metric */
 [data-testid="stMetricValue"] {{
-    color: {RSV_GOLD};
+    color: {RSV_GOLD} !important;
     font-size: 2rem;
 }}
+[data-testid="stMetricLabel"], [data-testid="stMetricLabel"] * {{
+    color: {RSV_GOLD_LIGHT} !important;
+}}
+/* DataFrame */
+.stDataFrame, .stDataFrame * {{
+    color: {RSV_TEXT};
+}}
+.stDataFrame [data-testid="stTable"] {{
+    background: {RSV_NAVY_LIGHT};
+}}
+/* Expander */
+.stExpander {{
+    background: {RSV_NAVY_LIGHT};
+    border: 1px solid {RSV_GOLD}33;
+    border-radius: 8px;
+}}
+.stExpander summary, .stExpander summary * {{
+    color: {RSV_GOLD_LIGHT} !important;
+}}
+/* Info/Warning/Success/Error 박스 */
+[data-testid="stAlert"] {{
+    background: {RSV_NAVY_LIGHT};
+}}
+[data-testid="stAlert"] * {{
+    color: {RSV_TEXT} !important;
+}}
+/* Spinner / 로딩 */
+.stSpinner > div {{
+    border-color: {RSV_GOLD} !important;
+}}
+/* 커스텀 카드 (이미 존재) */
 .rsv-card {{
     background: {RSV_NAVY_LIGHT};
     border: 1px solid {RSV_GOLD}44;
     border-radius: 12px;
     padding: 1.5rem;
     margin: 1rem 0;
+    color: {RSV_TEXT};
+}}
+.rsv-card * {{
+    color: {RSV_TEXT};
+}}
+.rsv-card b {{
+    color: {RSV_GOLD_LIGHT};
 }}
 .rsv-success {{
     background: #1a4d2e;
@@ -77,6 +177,10 @@ h1, h2, h3, h4 {{
     padding: 1rem;
     border-radius: 8px;
     margin: 0.5rem 0;
+    color: #d1fae5;
+}}
+.rsv-success * {{
+    color: #d1fae5 !important;
 }}
 .rsv-warning {{
     background: #5c4317;
@@ -84,6 +188,10 @@ h1, h2, h3, h4 {{
     padding: 1rem;
     border-radius: 8px;
     margin: 0.5rem 0;
+    color: #fef3c7;
+}}
+.rsv-warning * {{
+    color: #fef3c7 !important;
 }}
 .rsv-danger {{
     background: #5c1a1a;
@@ -91,12 +199,28 @@ h1, h2, h3, h4 {{
     padding: 1rem;
     border-radius: 8px;
     margin: 0.5rem 0;
+    color: #fecaca;
+}}
+.rsv-danger * {{
+    color: #fecaca !important;
 }}
 .score-big {{
     font-size: 3rem;
     font-weight: 800;
     color: {RSV_GOLD};
     text-align: center;
+}}
+/* 마크다운 링크 */
+.stApp a {{
+    color: {RSV_GOLD_LIGHT} !important;
+}}
+.stApp a:hover {{
+    color: {RSV_GOLD} !important;
+}}
+/* + / - 버튼 (NumberInput stepper) */
+.stNumberInput button {{
+    background: {RSV_GOLD} !important;
+    color: {RSV_NAVY} !important;
 }}
 </style>
 """, unsafe_allow_html=True)
