@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-7-4 숙련기능인력 비자 컨설팅 가이드 | RSV</title>
+<style>
+  :root {
+    --navy: #0A1628;
+    --navy-light: #162A47;
+    --navy-card: #1E3A5F;
+    --gold: #D4AF37;
+    --gold-light: #E8C964;
+    --gold-soft: #D4AF3722;
+    --text: #E8E6E1;
+    --text-dim: #8B95A7;
+    --success: #4ade80;
+    --danger: #ef4444;
+    --warn: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+    padding: 0;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 60px 30px; }
+  
+  /* Header */
+  .hero {
+    text-align: center;
+    padding: 60px 30px;
+    background: linear-gradient(180deg, var(--navy-card) 0%, transparent 100%);
+    border-radius: 24px;
+    margin-bottom: 60px;
+    border: 1px solid var(--gold-soft);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, var(--gold-soft) 0%, transparent 50%);
+    animation: pulse 8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.1); opacity: 0.5; }
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 42px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 800;
+    letter-spacing: -1px;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .author {
+    color: var(--gold-light);
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  
+  /* Section */
+  section { margin-bottom: 70px; }
+  h2 {
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 30px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--gold-soft);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; height: 44px;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: 800;
+  }
+  h3 {
+    color: var(--gold-light);
+    font-size: 20px;
+    margin: 24px 0 12px;
+  }
+  
+  /* Cards */
+  .card {
+    background: var(--navy-card);
+    border: 1px solid var(--gold-soft);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    h1 { font-size: 30px; }
+    .container { padding: 30px 16px; }
+  }
+  
+  /* Info Box */
+  .info-box {
+    background: var(--gold-soft);
+    border-left: 4px solid var(--gold);
+    padding: 20px 24px;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  .danger-box {
+    background: #5c1a1a44;
+    border-left: 4px solid var(--danger);
+    padding: 20px 24px;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  .success-box {
+    background: #1a4d2e44;
+    border-left: 4px solid var(--success);
+    padding: 20px 24px;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: var(--navy-light);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--gold-soft);
+  }
+  th {
+    background: var(--navy);
+    color: var(--gold);
+    font-weight: 700;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover { background: var(--navy-card); }
+  
+  /* Flow */
+  .flow {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+  }
+  .step {
+    flex: 1;
+    min-width: 180px;
+    background: var(--navy-card);
+    border: 1px solid var(--gold-soft);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 50%;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .step-title { color: var(--gold-light); font-weight: 700; margin-bottom: 8px; }
+  .step-desc { color: var(--text-dim); font-size: 14px; }
+  
+  /* Icons - Pure SVG */
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: var(--gold-soft);
+    border-radius: 12px;
+    margin-bottom: 16px;
+  }
+  
+  /* Score chart */
+  .score-bar {
+    background: var(--navy);
+    border-radius: 8px;
+    overflow: hidden;
+    height: 40px;
+    position: relative;
+    margin: 8px 0;
+  }
+  .score-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    color: var(--navy);
+    font-weight: 700;
+    transition: width 0.5s;
+  }
+  .score-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+  
+  /* Checklist */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    padding: 12px 0;
+    padding-left: 36px;
+    position: relative;
+    border-bottom: 1px solid var(--gold-soft);
+  }
+  .checklist li::before {
+    content: '✓';
+    position: absolute;
+    left: 0; top: 12px;
+    width: 24px; height: 24px;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+  }
+  .checklist.danger li::before {
+    content: '✕';
+    background: var(--danger);
+    color: white;
+  }
+  
+  /* TOC */
+  .toc {
+    background: var(--navy-card);
+    border: 1px solid var(--gold-soft);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 50px;
+  }
+  .toc h3 { margin-top: 0; }
+  .toc ol {
+    columns: 2;
+    column-gap: 30px;
+    padding-left: 20px;
+  }
+  .toc li { padding: 6px 0; }
+  .toc a { color: var(--text); text-decoration: none; }
+  .toc a:hover { color: var(--gold-light); }
+  @media (max-width: 768px) { .toc ol { columns: 1; } }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 40px;
+    margin-top: 60px;
+    border-top: 1px solid var(--gold-soft);
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  footer .logo {
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  
+  /* Print */
+  @media print {
+    body { background: white; color: #222; }
+    .hero, .card, .step, table, .toc { background: white; border: 1px solid #ccc; }
+    h1, h2, h3, .gold { color: #B8860B !important; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="badge">★ RSV PREMIUM CONSULTING ★</div>
+    <h1>E-7-4 숙련기능인력 비자</h1>
+    <p class="subtitle">E-9 → E-7-4 전환 컨설팅 실무 가이드</p>
+    <p class="subtitle" style="font-size:14px;color:var(--gold-light);">2026년 정책 반영 · 팀장 배포용</p>
+    <p class="author">RSV 부자들의 비밀금고 · 중소기업경영지원단 · 임원근 지사장</p>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h3>📚 목차</h3>
+  <ol>
+    <li><a href="#sec1">E-7-4 비자란?</a></li>
+    <li><a href="#sec2">왜 지금이 기회인가</a></li>
+    <li><a href="#sec3">신청 자격 핵심 4가지</a></li>
+    <li><a href="#sec4">결격사유 (신청 불가)</a></li>
+    <li><a href="#sec5">점수제 한눈에 보기</a></li>
+    <li><a href="#sec6">분야별 쿼터와 추천 경로</a></li>
+    <li><a href="#sec7">RSV 컨설팅 5단계</a></li>
+    <li><a href="#sec8">필수 서류 체크리스트</a></li>
+    <li><a href="#sec9">자주 묻는 질문 (FAQ)</a></li>
+    <li><a href="#sec10">상담 의뢰 안내</a></li>
+  </ol>
+</div>
+
+<!-- Section 1 -->
+<section id="sec1">
+  <h2><span class="num">1</span>E-7-4 비자란?</h2>
+  
+  <div class="card">
+    <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;">
+      <div style="flex:0 0 80px;">
+        <svg viewBox="0 0 60 60" width="80" height="80" fill="none">
+          <rect x="8" y="12" width="44" height="36" rx="4" stroke="#D4AF37" stroke-width="2"/>
+          <circle cx="22" cy="28" r="6" stroke="#D4AF37" stroke-width="2"/>
+          <line x1="34" y1="24" x2="46" y2="24" stroke="#D4AF37" stroke-width="2"/>
+          <line x1="34" y1="32" x2="46" y2="32" stroke="#D4AF37" stroke-width="2"/>
+          <line x1="14" y1="40" x2="46" y2="40" stroke="#D4AF37" stroke-width="2"/>
+        </svg>
+      </div>
+      <div style="flex:1;min-width:300px;">
+        <h3 style="margin-top:0;">숙련기능인력 (E-7-4)</h3>
+        <p>E-9(비전문취업)·E-10(선원)·H-2(방문취업) 비자로 4년 이상 한국에서 근무한 외국인이 <b>일정 점수 이상의 숙련도</b>를 입증할 경우 받을 수 있는 <b>장기체류 비자</b>입니다.</p>
+        <p style="margin-top:12px;color:var(--gold-light);">→ E-9는 최대 4년 10개월 후 출국해야 하지만, E-7-4는 갱신 가능한 장기비자이며 향후 F-2(거주) → F-5(영주) 경로로 이어집니다.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="grid-3">
+    <div class="card" style="text-align:center;">
+      <div class="icon" style="margin:0 auto;">
+        <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="#D4AF37" stroke-width="2">
+          <circle cx="16" cy="16" r="13"/>
+          <polyline points="16,8 16,16 22,20"/>
+        </svg>
+      </div>
+      <h3>장기 체류</h3>
+      <p style="font-size:14px;color:var(--text-dim);">최초 2년 + 갱신 가능<br>장기 안정 고용 가능</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="icon" style="margin:0 auto;">
+        <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="#D4AF37" stroke-width="2">
+          <path d="M16 4 L26 10 L26 22 L16 28 L6 22 L6 10 Z"/>
+          <path d="M16 4 L16 28"/>
+        </svg>
+      </div>
+      <h3>가족 동반</h3>
+      <p style="font-size:14px;color:var(--text-dim);">배우자·미성년 자녀<br>F-3 동반 비자 가능</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="icon" style="margin:0 auto;">
+        <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="#D4AF37" stroke-width="2">
+          <path d="M4 16 L12 24 L28 8"/>
+        </svg>
+      </div>
+      <h3>영주권 경로</h3>
+      <p style="font-size:14px;color:var(--text-dim);">F-2 → F-5 단계적<br>영주권 취득 가능</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2 -->
+<section id="sec2">
+  <h2><span class="num">2</span>왜 지금이 기회인가</h2>
+  
+  <div class="info-box">
+    <h3 style="margin-top:0;color:var(--gold-light);">🔥 2025~2026 정책 대폭 완화</h3>
+    <p>법무부가 <b>인력 확보를 위해 진입 장벽을 크게 낮춘 시기</b>입니다. 지금이 가장 신청 환경이 좋습니다.</p>
+  </div>
+  
+  <div class="grid-2">
+    <div class="card">
+      <h3>① 상시 신청제 도입</h3>
+      <p>기존 분기별 모집 → <b>연중 언제든 신청 가능</b><br>
+      하이코리아(www.hikorea.go.kr) 온라인 접수</p>
+    </div>
+    <div class="card">
+      <h3>② 쿼터 대폭 확대</h3>
+      <p>2024년 30,000명 → <b>2025년 35,000명</b>으로 증가<br>
+      제조업·뿌리산업·조선업 중심 배정</p>
+    </div>
+    <div class="card">
+      <h3>③ 한국어 요건 한시 유예</h3>
+      <p><b>2026.12.31까지</b> 한국어 미충족자도 신청 가능<br>
+      (최초 2년간 유예, 이후 TOPIK 2급+ 필요)</p>
+    </div>
+    <div class="card">
+      <h3>④ 근무기간 단축 우대</h3>
+      <p>사회통합프로그램 <b>3단계 이상 이수</b> 시<br>
+      4년 근무 요건 충족 인정</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3 -->
+<section id="sec3">
+  <h2><span class="num">3</span>신청 자격 핵심 4가지</h2>
+  
+  <p>아래 4가지를 <b>모두</b> 충족해야 신청 가능합니다.</p>
+  
+  <div class="flow">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">비자 종류</div>
+      <div class="step-desc">E-9 / E-10 / H-2 중 하나로<br>현재 정상 근로 중</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">근무 기간</div>
+      <div class="step-desc">최근 10년 중<br><b>4년 이상</b> 누적 체류</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">현 사업장</div>
+      <div class="step-desc"><b>1년 이상</b> 근무 중<br>고용주 추천서 필수</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">연봉 기준</div>
+      <div class="step-desc">일반: 연 2,600만원+<br>농어업: 연 2,500만원+</div>
+    </div>
+  </div>
+  
+  <div class="info-box">
+    <b>💡 우대 조항</b><br>
+    사회통합프로그램 <b>3단계 이상 이수자</b>는 근무기간 4년 충족 인정 (실제 근무 부족해도 OK)
+  </div>
+</section>
+
+<!-- Section 4 -->
+<section id="sec4">
+  <h2><span class="num">4</span>결격사유 (이 중 하나라도 해당시 신청 불가)</h2>
+  
+  <div class="danger-box">
+    <h3 style="margin-top:0;color:#ff8080;">⛔ 절대 신청 불가 사유</h3>
+    <ul class="checklist danger">
+      <li><b>벌금 100만원 이상</b> 형사처벌 이력 (음주운전·폭행 등)</li>
+      <li><b>세금 체납자</b> (단, 완납 후 신청은 가능)</li>
+      <li><b>출입국관리법 4회 이상</b> 위반</li>
+      <li><b>3개월 이상 불법체류</b> 이력</li>
+      <li>대한민국 이익·공공안전을 해칠 우려가 있는 자</li>
+    </ul>
+  </div>
+  
+  <div class="info-box">
+    <b>📌 기업 측 결격사유</b><br>
+    임금체불·폭행·불법고용 문제가 발생한 기업은 <b>5년간 추천 불가</b>합니다.<br>
+    상담 초기에 기업의 위반 이력도 반드시 확인하세요.
+  </div>
+</section>
+
+<!-- Section 5 -->
+<section id="sec5">
+  <h2><span class="num">5</span>점수제 한눈에 보기</h2>
+  
+  <div class="card">
+    <h3 style="margin-top:0;">합격 기준</h3>
+    <p>총 <b style="color:var(--gold);">300점 만점</b> 중 <b style="color:var(--gold);">200점 이상</b> 득점</p>
+    <p>+ <b>평균소득 50점 이상 AND 한국어 50점 이상</b> (둘 중 하나라도 미달 시 합격 불가)</p>
+  </div>
+  
+  <h3>📊 기본 항목 배점</h3>
+  
+  <div class="score-label"><span>① 평균소득 (최근 2년 연봉)</span><span style="color:var(--gold);">최대 120점</span></div>
+  <div class="score-bar"><div class="score-fill" style="width:100%;">연 4,000만원+ = 120점 / 2,600만원+ = 50점</div></div>
+  
+  <div class="score-label"><span>② 한국어 능력</span><span style="color:var(--gold);">최대 120점</span></div>
+  <div class="score-bar"><div class="score-fill" style="width:100%;">TOPIK 4급+ = 120점 / 사회통합 4단계+ = 120점</div></div>
+  
+  <div class="score-label"><span>③ 나이</span><span style="color:var(--gold);">최대 60점</span></div>
+  <div class="score-bar"><div class="score-fill" style="width:50%;">18~24세 = 60점 / 25~29세 = 50점</div></div>
+  
+  <div class="score-label"><span>④ 경력 (근무기간)</span><span style="color:var(--gold);">최대 50점</span></div>
+  <div class="score-bar"><div class="score-fill" style="width:42%;">8년+ = 50점 / 5년+ = 20점</div></div>
+  
+  <div class="score-label"><span>⑤ 학력</span><span style="color:var(--gold);">최대 35점</span></div>
+  <div class="score-bar"><div class="score-fill" style="width:29%;">박사 = 35점 / 학사 = 15점</div></div>
+  
+  <h3 style="margin-top:30px;">⭐ 가점 항목 (중복 가능)</h3>
+  
+  <table>
+    <thead>
+      <tr><th>항목</th><th>점수</th><th>비고</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>국가기술자격증 보유</td><td style="color:var(--gold);">+10점</td><td>해당 직종 관련</td></tr>
+      <tr><td>중앙부처 추천 (고용부/산업부/농림부 등)</td><td style="color:var(--gold);">+10점</td><td>분야별 추천</td></tr>
+      <tr><td>읍·면지역 근무 4년+</td><td style="color:var(--gold);">+10점</td><td>지방근무 우대</td></tr>
+      <tr><td>국내 대학 유학 (석사+)</td><td style="color:var(--gold);">+10점</td><td>전공 무관</td></tr>
+      <tr><td>인구감소지역 근무 4년+</td><td style="color:var(--gold);">+5점</td><td>지자체 지정 지역</td></tr>
+      <tr><td>사회통합프로그램 5단계 이수</td><td style="color:var(--gold);">+5점</td><td>한국어 점수와 중복 가능</td></tr>
+      <tr><td>납세실적 300만원 이상 (연)</td><td style="color:var(--gold);">+5점</td><td>최근 1년 소득세</td></tr>
+      <tr><td>국가/지자체 표창</td><td style="color:var(--gold);">+5점</td><td>건당 2점, 최대 5점</td></tr>
+    </tbody>
+  </table>
+  
+  <div class="success-box">
+    <b>🎯 점수 보강 우선순위 추천</b><br>
+    1️⃣ TOPIK 한국어 시험 (최대 효과) → 2️⃣ 사회통합프로그램 이수 → 3️⃣ 국가기술자격증 → 4️⃣ 중앙부처 추천
+  </div>
+</section>
+
+<!-- Section 6 -->
+<section id="sec6">
+  <h2><span class="num">6</span>분야별 쿼터와 추천 경로</h2>
+  
+  <table>
+    <thead>
+      <tr><th>분야</th><th>주관 부처</th><th>특징</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>제조업 (일반)</b></td><td>고용노동부</td><td>가장 큰 쿼터, 기업체 추천 중심</td></tr>
+      <tr><td><b>뿌리산업</b></td><td>산업통상자원부</td><td>뿌리기업 확인서 필수, 우대</td></tr>
+      <tr><td><b>농축산업</b></td><td>농림축산식품부</td><td>농업경영체 등록 확인 필요</td></tr>
+      <tr><td><b>조선업</b></td><td>산업통상자원부</td><td>원청확인서 또는 기자재업체 확인서</td></tr>
+      <tr><td><b>어업/내항상선</b></td><td>해양수산부</td><td>내항운송사업 면허 필요</td></tr>
+      <tr><td><b>건설업</b></td><td>국토교통부</td><td>공사금액 입증서류 필요</td></tr>
+    </tbody>
+  </table>
+  
+  <div class="info-box">
+    <b>추천 경로 3가지</b><br>
+    ① <b>기업체 추천</b>: 현 고용주가 직접 추천 (가장 일반적)<br>
+    ② <b>중앙부처 추천</b>: 분야별 주관 부처 추천 (+10점 가점)<br>
+    ③ <b>광역지자체 추천</b>: 17개 시·도 지자체 추천 (지역 특화)
+  </div>
+</section>
+
+<!-- Section 7 -->
+<section id="sec7">
+  <h2><span class="num">7</span>RSV 컨설팅 5단계 프로세스</h2>
+  
+  <div class="flow">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">사전 진단</div>
+      <div class="step-desc">RSV E-7-4 앱으로<br>자격·점수 자동 진단</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">보강 플랜</div>
+      <div class="step-desc">AI 분석 후<br>6개월 로드맵 제시</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">서류 준비</div>
+      <div class="step-desc">추천서 초안 자동생성<br>+ 부속서류 가이드</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">행정사 연계</div>
+      <div class="step-desc">제휴 행정사 통한<br>실제 신청 대행</div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-title">사후 관리</div>
+      <div class="step-desc">갱신·F-2 전환까지<br>장기 컨설팅</div>
+    </div>
+  </div>
+  
+  <div class="info-box">
+    <b>⚠️ 영업 시 주의사항</b><br>
+    실제 비자 신청 대행은 <b>행정사·변호사 독점 업무</b>입니다. RSV는 <b>사전 진단·시뮬레이션·서류 초안 보조</b>까지만 수행하며, 최종 신청은 제휴 행정사를 통해 진행합니다. 고객 상담 시 이 범위를 명확히 안내해야 합니다.
+  </div>
+</section>
+
+<!-- Section 8 -->
+<section id="sec8">
+  <h2><span class="num">8</span>필수 서류 체크리스트</h2>
+  
+  <div class="grid-2">
+    <div class="card">
+      <h3>👤 외국인 본인 서류</h3>
+      <ul class="checklist">
+        <li>여권 사본 + 외국인등록증 사본</li>
+        <li>신원보증서 (별지 129호, 고용주가 보증인)</li>
+        <li>TOPIK 성적표 (해당자)</li>
+        <li>사회통합프로그램 이수증 (해당자)</li>
+        <li>국가기술자격증 사본 (가점자)</li>
+        <li>국내 학위증 사본 (가점자)</li>
+        <li>국내 운전면허증 사본 (가점자)</li>
+        <li>표창장·봉사활동 증명서 (가점자)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🏢 기업 (사업주) 서류</h3>
+      <ul class="checklist">
+        <li>사업자등록증 사본</li>
+        <li>고용기업 추천서 (별도양식)</li>
+        <li>추천자 신분증 사본</li>
+        <li>납세증명서 (국세·지방세)</li>
+        <li>고용보험 가입자 명부 (4대보험)</li>
+        <li>고용계약서 (향후 2년 이상)</li>
+        <li>뿌리기업 확인서 (뿌리산업)</li>
+        <li>원청확인서 (조선업)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Section 9 -->
+<section id="sec9">
+  <h2><span class="num">9</span>자주 묻는 질문 (FAQ)</h2>
+  
+  <div class="card">
+    <h3>Q1. 사업장 변경 이력이 있어도 신청 가능한가요?</h3>
+    <p>가능합니다. 다만 <b>현재 사업장에서 1년 이상 근무</b>해야 하며, 누적 4년의 E-9/E-10/H-2 근무기간이 충족되어야 합니다. 사업장 변경 횟수가 많으면 심사에서 불리할 수 있습니다.</p>
+  </div>
+  
+  <div class="card">
+    <h3>Q2. 한국어 능력이 전혀 없어도 신청 가능한가요?</h3>
+    <p>2026.12.31까지는 <b>한시 유예</b>로 신청은 가능하나, 점수제에서 한국어 50점 미달로 <b>200점 달성이 매우 어렵습니다</b>. 최소 TOPIK 2급 또는 사회통합 2단계 이상은 확보하는 것이 안전합니다.</p>
+  </div>
+  
+  <div class="card">
+    <h3>Q3. 회사가 외국인을 추천할 수 있는 인원 제한이 있나요?</h3>
+    <p>있습니다. <b>상시근로자 수의 20% 이내</b>에서만 추천 가능합니다. (예: 상시근로자 30명 → 최대 6명) 단, E-9/E-10 고용 기업은 최소 1명 추천 허용.</p>
+  </div>
+  
+  <div class="card">
+    <h3>Q4. 가족(배우자·자녀)도 함께 한국에 올 수 있나요?</h3>
+    <p>네, E-7-4 취득 후 <b>F-3(동반) 비자</b>로 배우자와 미성년 자녀를 초청할 수 있습니다. 단, 본인의 소득으로 가족 부양이 가능함을 입증해야 합니다.</p>
+  </div>
+  
+  <div class="card">
+    <h3>Q5. 비자 신청 후 얼마나 걸리나요?</h3>
+    <p>일반적으로 <b>접수 후 1~3개월</b> 소요됩니다. 서류 보완 요청이 있을 경우 더 길어질 수 있으며, 분야별 추천(중앙부처·지자체)은 별도 심사 기간이 추가됩니다.</p>
+  </div>
+  
+  <div class="card">
+    <h3>Q6. 신청이 거절되면 재신청 가능한가요?</h3>
+    <p>가능합니다. 거절 사유가 점수 부족이라면 보강 후 재신청, 결격사유라면 사유 해소 후 재신청합니다. 단, 일부 결격사유(중대 형사범 등)는 영구 신청 불가합니다.</p>
+  </div>
+</section>
+
+<!-- Section 10 -->
+<section id="sec10">
+  <h2><span class="num">10</span>상담 의뢰 안내</h2>
+  
+  <div class="card" style="text-align:center;padding:50px 30px;">
+    <h3 style="margin-top:0;color:var(--gold);">RSV 부자들의 비밀금고</h3>
+    <p style="font-size:18px;margin:20px 0;">중소기업경영지원단 · 임원근 지사장</p>
+    <p style="color:var(--text-dim);">E-7-4 비자 컨설팅 상담 의뢰 및 RSV 진단 앱 접속 안내</p>
+    <div style="margin-top:30px;padding:24px;background:var(--gold-soft);border-radius:12px;display:inline-block;">
+      <p style="color:var(--gold-light);font-weight:700;">📱 RSV E-7-4 진단 앱</p>
+      <p style="font-size:14px;color:var(--text-dim);margin-top:8px;">사전 진단 → 점수 시뮬레이션 → AI 보강 플랜<br>→ 기업 추천서 초안 자동 생성</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">★ RSV ★</div>
+  <p>본 가이드는 2026년 5월 기준 정책을 반영하여 작성되었으며, 비자 정책은 수시로 변경될 수 있습니다.</p>
+  <p>실제 신청 시점에는 법무부 하이코리아(www.hikorea.go.kr) 및 출입국·외국인청 공지를 반드시 확인하시기 바랍니다.</p>
+  <p style="margin-top:16px;">© RSV 부자들의 비밀금고 · 중소기업경영지원단 · 임원근 지사장</p>
+</footer>
+
+</div>
+</body>
+</html>
