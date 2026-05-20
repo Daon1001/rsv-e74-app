@@ -104,7 +104,18 @@ h1, h2, h3, h4 {{
 # ============================================================
 # 1. 상수 / 설정 (벤처·KOITA 앱과 동일 패턴)
 # ============================================================
-GIST_ID = "958084eac7f7fcb31a441dcc7d0cd7cd"
+import streamlit as _st_for_secrets
+def _get_gist_id():
+    try:
+        return (
+            _st_for_secrets.secrets.get("GIST_ID")
+            or _st_for_secrets.secrets.get("gist_id")
+            or "958084eac7f7fcb31a441dcc7d0cd7cd"
+        )
+    except Exception:
+        return "958084eac7f7fcb31a441dcc7d0cd7cd"
+
+GIST_ID = _get_gist_id()
 ADMIN_EMAIL = "incheon00@gmail.com"
 USD_TO_KRW = 1380
 
@@ -120,10 +131,22 @@ DEFAULT_MODEL = "claude-haiku-4-5-20251001"  # 비용 최적화
 # 2. 사용자 DB (Gist 연동) - 벤처/KOITA 앱 패턴 재사용
 # ============================================================
 def get_github_token():
-    return st.secrets.get("GITHUB_TOKEN", os.getenv("GITHUB_TOKEN", ""))
+    return (
+        st.secrets.get("GITHUB_TOKEN")
+        or st.secrets.get("github_token")
+        or os.getenv("GITHUB_TOKEN")
+        or os.getenv("github_token")
+        or ""
+    )
 
 def get_anthropic_key():
-    return st.secrets.get("ANTHROPIC_API_KEY", os.getenv("ANTHROPIC_API_KEY", ""))
+    return (
+        st.secrets.get("ANTHROPIC_API_KEY")
+        or st.secrets.get("anthropic_api_key")
+        or os.getenv("ANTHROPIC_API_KEY")
+        or os.getenv("anthropic_api_key")
+        or ""
+    )
 
 @st.cache_data(ttl=60)
 def load_user_db():
